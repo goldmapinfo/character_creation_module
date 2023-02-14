@@ -2,36 +2,70 @@ from random import randint
 
 
 def attack(char_name, char_class):
+    damage = 0
     if char_class == 'warrior':
-        return (f'{char_name} нанёс противнику урон, равный '
-                f'{5 + randint(3, 5)}')
+        damage = 5 + randint(3, 5)
     if char_class == 'mage':
-        return (f'{char_name} нанёс противнику урон, равный '
-                f'{5 + randint(5, 10)}')
+        damage = 5 + randint(5, 10)
     if char_class == 'healer':
-        return (f'{char_name} нанёс противнику урон, равный '
-                f'{5 + randint(-3, -1)}')
-    return (f'{char_name} не атаковал')
+        damage = 5 + randint(-3, -1)
+    return (f'{char_name} нанёс урон противнику равный {damage}')
 
 
 def defence(char_name, char_class):
+    block_damage = 0
     if char_class == 'warrior':
-        return (f'{char_name} блокировал {10 + randint(5, 10)} ед. урона')
+        block_damage = 10 + randint(5, 10)
     if char_class == 'mage':
-        return (f'{char_name} блокировал {10 + randint(-2, 2)} ед. урона')
+        block_damage = 10 + randint(-2, 2)
     if char_class == 'healer':
-        return (f'{char_name} блокировал {10 + randint(2, 5)} ед. урона')
-    return (f'{char_name} не блокировал')
+        block_damage = 10 + randint(2, 5)
+    return (f'{char_name} блокировал {block_damage} урона')
 
 
 def special(char_name, char_class):
-    if char_class == 'warrior':
-        return (f'{char_name} применил специальное умение'
-                f'«Выносливость {80 + 25}»')
-    if char_class == 'mage':
-        return (f'{char_name} применил специальное умение «Атака {5 + 40}»')
-    if char_class == 'healer':
-        return (f'{char_name} применил специальное умение «Защита {10 + 30}»')
+    use_sp = 'применил специальное умение,'
+    skill_endurance = 0
+    skill_attack = 0
+    skill_protection = 0
+    import random
+
+    def choice_skills():
+        return (random.choice(skills))
+    skills = ['«Выносливость»', '«Атака»', '«Защита»', 'Нет']
+    if char_class == 'warrior' and choice_skills == '«Выносливость»':
+        skill_endurance = 80 + randint(1, 10)
+        return (f'{char_name} {use_sp} «Выносливость» - {skill_endurance}')
+    if char_class == 'warrior' and choice_skills() == '«Атака»':
+        skill_attack = 5 + randint(1, 5)
+        return (f'{char_name} {use_sp} «Атака» - {skill_attack}')
+    if char_class == 'warrior' and choice_skills() == '«Защита»':
+        skill_protection = 10 + randint(1, 5)
+        return (f'{char_name} {use_sp} «Защита» - {skill_protection}')
+    if char_class == 'warrior' and choice_skills() == 'Нет':
+        return (f'{char_name} не применил специальное умение')
+    if char_class == 'mage' and choice_skills == '«Выносливость»':
+        skill_endurance = 80 + randint(1, 5)
+        return (f'{char_name} {use_sp} «Выносливость» - {skill_endurance}')
+    if char_class == 'mage' and choice_skills() == '«Атака»':
+        skill_attack = 5 + randint(1, 10)
+        return (f'{char_name} {use_sp} «Атака» - {skill_attack}')
+    if char_class == 'mage' and choice_skills() == '«Защита»':
+        skill_protection = 10 + randint(1, 5)
+        return (f'{char_name} {use_sp} «Защита» - {skill_protection}')
+    if char_class == 'mage' and choice_skills() == 'Нет':
+        return (f'{char_name} не применил специальное умение')
+    if char_class == 'healer' and choice_skills == '«Выносливость»':
+        skill_endurance = 80 + randint(1, 10)
+        return (f'{char_name} {use_sp} «Выносливость» - {skill_endurance}')
+    if char_class == 'healer' and choice_skills() == '«Атака»':
+        skill_attack = 5 + randint(1, 5)
+        return (f'{char_name} {use_sp} «Атака» - {skill_attack}')
+    if char_class == 'healer' and choice_skills() == '«Защита»':
+        skill_protection = 10 + randint(1, 5)
+        return (f'{char_name} {use_sp} «Защита» - {skill_protection}')
+    if char_class == 'healer' and choice_skills() == 'Нет':
+        return (f'{char_name} не применил специальное умение')
     return (f'{char_name} не применил специальное умение')
 
 
